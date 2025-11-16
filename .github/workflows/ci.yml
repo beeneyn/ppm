@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [18.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install dependencies
+        run: npm install
+      - name: Link ppm CLI
+        run: npm link
+      - name: Test install command
+        run: ppm install lodash
+      - name: Test uninstall command
+        run: ppm uninstall lodash
+      - name: Test list command
+        run: ppm list
+      - name: Test script support
+        run: |
+          echo '{"scripts":{"test":"echo test-script"}}' > package.json
+          ppm run test
+      - name: Test config file support
+        run: |
+          echo '{"customSettings":{"cacheDirectory":".ppm-cache"}}' > ppm.json
+          ppm install lodash
+      - name: Test cache reuse
+        run: |
+          rm -rf node_modules
+          ppm install lodash
+      - name: Test update/upgrade
+        run: |
+          ppm install lodash@4.17.20
+          ppm update lodash
+          ppm upgrade
