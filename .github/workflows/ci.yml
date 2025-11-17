@@ -30,29 +30,34 @@ jobs:
         run: chmod +x bin/ppm.js
       - name: Add local bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
+      - name: Print working directory and node_modules
+        run: |
+          pwd
+          ls -l
+          ls -l node_modules
       - name: Test install command
-        run: node bin/ppm.js install lodash
+        run: NODE_PATH=$(pwd)/node_modules node bin/ppm.js install lodash
       - name: Test uninstall command
-        run: node bin/ppm.js uninstall lodash
+        run: NODE_PATH=$(pwd)/node_modules node bin/ppm.js uninstall lodash
       - name: Test list command
-        run: node bin/ppm.js list
+        run: NODE_PATH=$(pwd)/node_modules node bin/ppm.js list
       - name: Test script support
         run: |
           echo '{"scripts":{"test":"echo test-script"}}' > package.json
-          node bin/ppm.js run test
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js run test
       - name: Test config file support
         run: |
           echo '{"customSettings":{"cacheDirectory":".ppm-cache"}}' > ppm.json
-          node bin/ppm.js install lodash
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js install lodash
       - name: Test cache reuse
         run: |
           rm -rf node_modules
-          node bin/ppm.js install lodash
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js install lodash
       - name: Test update/upgrade
         run: |
-          node bin/ppm.js install lodash@4.17.20
-          node bin/ppm.js update lodash
-          node bin/ppm.js upgrade
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js install lodash@4.17.20
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js update lodash
+          NODE_PATH=$(pwd)/node_modules node bin/ppm.js upgrade
       - name: List node_modules for debugging
         run: |
           if [ -d node_modules ]; then ls -l node_modules; else echo 'No node_modules directory found.'; fi
