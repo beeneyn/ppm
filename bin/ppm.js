@@ -390,6 +390,26 @@ program
   });
 
 program
+  .command('ls-modules')
+  .description('List all modules in node_modules')
+  .action(() => {
+    const nodeModules = path.join(process.cwd(), 'node_modules');
+    if (!fs.existsSync(nodeModules)) {
+      console.log('No node_modules directory found.');
+      return;
+    }
+    const modules = fs.readdirSync(nodeModules).filter(name => !name.startsWith('.'));
+    if (modules.length === 0) {
+      console.log('No modules found in node_modules.');
+    } else {
+      console.log('Modules in node_modules:');
+      for (const mod of modules) {
+        console.log('- ' + mod);
+      }
+    }
+  });
+
+program
   .command('help')
   .description('Show detailed help for all ppm commands')
   .action(() => {

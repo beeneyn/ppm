@@ -10,5 +10,3 @@ prisma.lock
 ppm.json
 .ppm-cache/
 test/
-README.md
-LICENSE
