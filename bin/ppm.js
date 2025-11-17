@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 // Helper to read ppm.json config
 function getPPMConfig() {
   const configPath = path.join(process.cwd(), 'ppm.json');
@@ -105,7 +107,7 @@ program
 program
   .name('ppm')
   .description('Prisma Package Manager (ppm) - a Node.js package manager CLI')
-  .version('0.1.0')
+  .version('1.0.0')
   .addHelpText('after', `
 
 Examples:

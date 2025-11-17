@@ -1,6 +1,6 @@
 {
-  "name": "ppm",
-  "version": "0.1.0",
+  "name": "prismapm",
+  "version": "1.0.0",
   "description": "Prisma Package Manager (ppm) - a Node.js package manager CLI inspired by npm/yarn",
   "main": "bin/ppm.js",
   "bin": {
@@ -10,7 +10,7 @@
     "start": "node index.js"
   },
   "keywords": ["package manager", "cli", "prisma", "ppm"],
-  "author": "",
+  "author": "beeneyn",
   "license": "MIT",
   "dependencies": {
     "commander": "^11.0.0",

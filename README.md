@@ -1,6 +1,6 @@
 # Prisma Package Manager (ppm)
 
-[![CI](https://github.com/yourusername/ppm/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/ppm/actions)
+[![CI](https://github.com/yourusername/ppm/actions/workflows/ci.yml/badge.svg)](https://github.com/beeneyn/ppm/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/node-%3E=18.0.0-brightgreen)](https://nodejs.org/)
 

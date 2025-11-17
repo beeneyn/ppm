@@ -1,0 +1,14 @@
+# Ignore dev and config files for npm package
+.github/
+.vscode/
+node_modules/
+coverage/
+.nyc_output/
+*.log
+*.lock
+prisma.lock
+ppm.json
+.ppm-cache/
+test/
+README.md
+LICENSE
