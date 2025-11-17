@@ -28,25 +28,25 @@ jobs:
       - name: Add local bin to PATH
         run: echo "$(pwd)/node_modules/.bin" >> $GITHUB_PATH
       - name: Test install command
-        run: ppm install lodash
+        run: npx ppm install lodash
       - name: Test uninstall command
-        run: ppm uninstall lodash
+        run: npx ppm uninstall lodash
       - name: Test list command
-        run: ppm list
+        run: npx ppm list
       - name: Test script support
         run: |
           echo '{"scripts":{"test":"echo test-script"}}' > package.json
-          ppm run test
+          npx ppm run test
       - name: Test config file support
         run: |
           echo '{"customSettings":{"cacheDirectory":".ppm-cache"}}' > ppm.json
-          ppm install lodash
+          npx ppm install lodash
       - name: Test cache reuse
         run: |
           rm -rf node_modules
-          ppm install lodash
+          npx ppm install lodash
       - name: Test update/upgrade
         run: |
-          ppm install lodash@4.17.20
-          ppm update lodash
-          ppm upgrade
+          npx ppm install lodash@4.17.20
+          npx ppm update lodash
+          npx ppm upgrade
