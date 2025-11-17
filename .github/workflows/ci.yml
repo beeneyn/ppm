@@ -21,6 +21,9 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
         run: npm install
+      - name: List node_modules after install
+        run: |
+          if [ -d node_modules ]; then ls -l node_modules; else echo 'No node_modules directory found.'; fi
       - name: Link ppm CLI
         run: npm link
       - name: Ensure bin/ppm.js is executable
